@@ -4,16 +4,16 @@ terraform {
   # ---------------------------------------------------
   required_providers {
     azurerm = {
-      source  = "registry.terraform.io/hashicorp/azurerm"
+      source = "registry.terraform.io/hashicorp/azurerm"
     }
     kubernetes = {
-      source  = "registry.terraform.io/hashicorp/kubernetes"
+      source = "registry.terraform.io/hashicorp/kubernetes"
     }
     helm = {
-      source  = "registry.terraform.io/hashicorp/helm"
+      source = "registry.terraform.io/hashicorp/helm"
     }
     random = {
-      source  = "registry.terraform.io/hashicorp/random"
+      source = "registry.terraform.io/hashicorp/random"
     }
   }
 }
@@ -108,8 +108,8 @@ resource "azurerm_kubernetes_cluster" "default" {
   public_network_access_enabled = true
 
   azure_active_directory_role_based_access_control {
-    managed                = true
-    azure_rbac_enabled     = true
+    managed            = true
+    azure_rbac_enabled = true
     # Grant Cluster Admin to AzureAD object ids supplied at runtime
     admin_group_object_ids = var.adminGroupObjectIds
   }
@@ -138,6 +138,11 @@ resource "azurerm_kubernetes_cluster" "default" {
 
   identity {
     type = "SystemAssigned"
+  }
+
+  monitor_metrics {
+    annotations_allowed = null
+    labels_allowed      = null
   }
 }
 

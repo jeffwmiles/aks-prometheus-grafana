@@ -1,0 +1,14 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: windows-exporter-config
+  namespace: kube-system
+  labels:
+    app: windows-exporter
+data:
+  config.yml: |
+    collectors:
+      enabled: '[defaults],container'
+    collector:
+      service:
+        services-where: "Name='containerd' or Name='kubelet'"
