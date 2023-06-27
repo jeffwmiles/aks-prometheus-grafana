@@ -58,6 +58,10 @@ provider "helm" {
     password = var.artifactAPIToken
   }
 }
+provider "grafana" {
+  url  = azurerm_dashboard_grafana.default.endpoint
+  auth = "securely pass api token"
+}
 
 ## ---------------------------------------------------
 # Initial resource group
