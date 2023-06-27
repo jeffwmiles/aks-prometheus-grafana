@@ -1,17 +1,17 @@
 ## ---------------------------------------------------
 # Windows exporter configuration
 ## ---------------------------------------------------
-resource "kubernetes_manifest" "windows-exporter-daemonset" {
-  manifest = yamldecode(file("windows-exporter-daemonset_daemonset.yaml"))
+resource "kubectl_manifest" "windows-exporter-daemonset" {
+  yaml_body = file("windows-exporter-daemonset_daemonset.yaml")
 }
 
-resource "kubernetes_manifest" "windows-exporter-configmap" {
-  manifest = yamldecode(file("windows-exporter-daemonset_configmap.yaml"))
+resource "kubectl_manifest" "windows-exporter-configmap" {
+  yaml_body = file("windows-exporter-daemonset_configmap.yaml")
 }
 
 # Apply the ama-metrics-settings-configmap to your cluster.
-resource "kubernetes_manifest" "ama-metrics-settings-configmap" {
-  manifest = yamldecode(file("ama-metrics-settings-configmap.yaml"))
+resource "kubectl_manifest" "ama-metrics-settings-configmap" {
+  yaml_body = file("ama-metrics-settings-configmap.yaml")
 }
 
 ## ---------------------------------------------------

@@ -267,3 +267,11 @@ resource "azapi_resource" "KubernetesReccordingRulesRuleGroup" {
   schema_validation_enabled = false
   ignore_missing_property   = false
 }
+
+# Apply the ama-metrics-settings-configmap to your cluster.
+resource "kubectl_manifest" "ama-metrics-prometheus-config-configmap" {
+  yaml_body = file("ama-metrics-prometheus-config-configmap.yaml")
+  # https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/prometheus-metrics-scrape-configuration
+  # https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/prometheus-metrics-scrape-validate#apply-config-file
+  # https://github.com/Azure/prometheus-collector/blob/main/otelcollector/configmaps/ama-metrics-prometheus-config-configmap.yaml
+}
